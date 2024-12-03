@@ -6,17 +6,35 @@ namespace par_programmering_03
         public string _title { get; private set; } = string.Empty;
         public string _about { get; private set; } = string.Empty;
         public string _director { get; private set; } = string.Empty;
+        public string _actors { get; private set; } = string.Empty;
         public int _year { get; private set; }
 
-        public List<Film> films = new List<Film>();
-        
-        private void PushFilm()
+        private List<Film> _films = new List<Film>();
+
+
+        private void DisplayRecentAdded()
         {
-            Film NewFilm = new Film(_title, _about, _director, _year);
+            var lastAddedFilm = _films.LastOrDefault();
+            Console.Clear();
+            Console.WriteLine("--- FUCCING PIRATE BAY ---\n");
+            Console.WriteLine("------- LAST ADDED -------");
+
+            Console.WriteLine(
+                    $"Title: {lastAddedFilm._title}\n" +
+                    $"Year: {lastAddedFilm._year}\n" +
+                    $"Director: {lastAddedFilm._director}\n" +
+                    $"Actors: {lastAddedFilm._actors}\n" +
+                    $"About: {lastAddedFilm._about}");
+
+            Console.WriteLine("------- LAST ADDED -------");
+            Thread.Sleep(2000);
         }
+
 
         public void GetInput()
         {
+            Console.WriteLine("--- FUCCING PIRATE BAY ---\n");
+            Console.WriteLine("----- ADD YOUR MOVIE -----");
             Console.Write("Title: ");
             _title = Console.ReadLine() ?? "";
 
@@ -26,18 +44,36 @@ namespace par_programmering_03
             Console.Write("Director: ");
             _director = Console.ReadLine() ?? "";
 
+            Console.Write("Actors (separate by comma): ");
+            _actors = Console.ReadLine() ?? "";
+
             Console.Write("About: ");
             _about = Console.ReadLine() ?? "";
 
-            films.Add(new Film(_title, _about, _director, _year));
+            _films.Add(new Film(_title, _about, _director, _actors, _year));
+            DisplayRecentAdded();
         }
 
-        public void dispFilm() {
-            foreach(Film x in films) {
-                Console.WriteLine($"Title: {x._title}\nAbout: {x._about}\nDirector: {x._director}\nYear: {x._year}");
-                Console.WriteLine("------------------------");
+
+        public void DisplayFilm()
+        {
+            Console.Clear();
+            Console.WriteLine("--- FUCCING PIRATE BAY ---\n");
+            Console.WriteLine("---- YOUR ADDED MOVIES ---");
+
+            foreach (Film x in _films)
+            {
+                Console.WriteLine(
+                        "--------------------------\n" +
+                        $"Title: {x._title}\n" +
+                        $"About: {x._about}\n" +
+                        $"Director: {x._director}\n" +
+                        $"Actors: {x._actors}\n" +
+                        $"Year: {x._year}\n" +
+                        "--------------------------");
             }
-            Console.WriteLine("Press ENTER to go back to the menu");
+
+            Console.Write("Press ENTER to go back to the menu");
             Console.ReadLine();
             Console.Clear();
         }

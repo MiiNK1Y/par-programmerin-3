@@ -8,43 +8,37 @@ using par_programmering_03;
 class Program
 {
 
-
     static Input InputBook = new Input();
-    // fill in the fields
-    // InputBook.GetInput();
-
-    // InputBook.dispFilm();
-
 
     static void Main()
     {
 
         while (true)
         {
-            
-            Console.WriteLine("[1] Show movies\n[2] Add movies\n[Q] quit");
-            Console.Write("\nPress the number asosiated with you option:");
-            var input = Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("--- FUCCING PIRATE BAY ---\n");
+            Console.WriteLine("[1] Show movies\n[2] Add movies\n[Q] Quit");
+            Console.Write("\nSelect: ");
+            var input = Console.ReadLine().ToLower();
 
             switch (input)
             {
                 case "q":
-                    break;
+                    Console.Clear();
+                    return;
                 case "1":
-                    InputBook.dispFilm();
+                    InputBook.DisplayFilm();
                     break;
                 case "2":
+                    Console.Clear();
                     InputBook.GetInput();
                     Console.Clear();
                     break;
                 default:
-                    Console.Clear();
-                    Console.WriteLine("IVALID INPUT :(");
+                    Console.WriteLine("\nIVALID INPUT (fuck you) :(");
                     Thread.Sleep(1000);
                     break;
             }
         }
     }
 }
-
-
