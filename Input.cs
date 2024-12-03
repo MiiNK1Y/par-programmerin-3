@@ -8,6 +8,8 @@ namespace par_programmering_03
         public string _director { get; private set; } = string.Empty;
         public int _year { get; private set; }
 
+        public List<Film> films = new List<Film>();
+        
         private void PushFilm()
         {
             Film NewFilm = new Film(_title, _about, _director, _year);
@@ -26,6 +28,18 @@ namespace par_programmering_03
 
             Console.Write("About: ");
             _about = Console.ReadLine() ?? "";
+
+            films.Add(new Film(_title, _about, _director, _year));
+        }
+
+        public void dispFilm() {
+            foreach(Film x in films) {
+                Console.WriteLine($"Title: {x._title}\nAbout: {x._about}\nDirector: {x._director}\nYear: {x._year}");
+                Console.WriteLine("------------------------");
+            }
+            Console.WriteLine("Press ENTER to go back to the menu");
+            Console.ReadLine();
+            Console.Clear();
         }
     }
 }
